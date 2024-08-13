@@ -95,6 +95,20 @@ function Navbar() {
               activeClass="navbar--active-content"
               spy={true}
               smooth={true}
+              offset={20}
+              duration={500}
+              to="Career"
+              className="navbar--content"
+            >
+              Career
+            </Link>
+          </li>
+          <li>
+            <Link
+              onClick={closeMenu}
+              activeClass="navbar--active-content"
+              spy={true}
+              smooth={true}
               offset={-70}
               duration={500}
               to="Contact"
