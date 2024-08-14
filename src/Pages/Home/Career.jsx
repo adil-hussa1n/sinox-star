@@ -11,10 +11,21 @@ export default function Career() {
   const [alert, setAlert] = useState({ type: '', message: '' });
 
   const jobDescriptions = {
-    'Business Development Manager': 'A business development manager works in strategic planning, sales management, and prospecting for new clients to help grow an organization.',
-    'Marketing Manager': 'Oversees the marketing department, develops marketing strategies, and manages campaigns to promote the company’s products or services.',
-    'Customer Support Manager': 'Leads the customer support team, ensures customer satisfaction, and resolves customer issues promptly.',
+    'Business Development Manager': `1. Works in strategic planning.
+                                     2. Manages sales and prospecting for new clients.
+                                     3. Aims to help grow the organization.`,
+    'Marketing Manager': `1. Generating all digital marketing content.
+                          2. Creating leads.
+                          3. Supervision of all digital marketing platforms.
+                          4. Organising different marketing strategies and events.
+                          5. Handling all other non-virtual marketing strategies and activities.`,
+    'Customer Support Manager': `1. Responding to customers and their demands.
+                                 2. Recording customer data and other information.
+                                 3. Initial conversations with customers.
+                                 4. Making phone calls and sending emails.`,
   };
+  
+  
 
   const handleJobRoleChange = (e) => {
     const selectedRole = e.target.value;
@@ -100,7 +111,7 @@ export default function Career() {
           <ul className="career-benefits-list">
             <li><i className="fa fa-briefcase"></i> Professional Development Opportunities</li>
             <li><i className="fa fa-clock"></i> Flexible Work Environment</li>
-            <li><i className="fa fa-heartbeat"></i> Health and Wellness Programs</li>
+            <li><i className="fa fa-heartbeat"></i> Sponsorship available for international applicants</li>
             <li><i className="fa fa-globe"></i> Inclusive and Diverse Culture</li>
           </ul>
         </div>
@@ -133,9 +144,18 @@ export default function Career() {
                 </select>
               </div>
               <div className="career-form-group-card">
-                <label htmlFor="jobDescription" className="career-label-card">Job Description</label>
-                <p className="career-job-description-card">{jobDescription}</p>
-              </div>
+                
+  <label htmlFor="jobDescription" className="career-label-card">Job Description</label>
+  <p className="career-job-description-card">
+    {jobDescription.split('\n').map((line, index) => (
+      <React.Fragment key={index}>
+        {line}
+        <br />
+      </React.Fragment>
+    ))}
+  </p>
+</div>
+
               <div className="career-form-group-card">
                 <label htmlFor="cvUpload" className="career-label-card">Upload CV</label>
                 <div className="career-upload-wrapper">
