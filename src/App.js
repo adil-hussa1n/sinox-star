@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 3000); // Simulate a 3-second load time or adjust as needed
+    }, 3000); 
   }, []);
 
   return (

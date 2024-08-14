@@ -112,17 +112,23 @@ h2 {
   left: 0;
   right: 0;
   z-index: 1000;
+  max-width: 100%; /* Ensure it doesn't stretch beyond screen width */
 }
+
 .navbar--items > ul {
   list-style: none;
   display: flex;
   align-items: flex-start;
-  gap: 42.667px;
+  gap: 42.667px; /* Adjust this based on screen size */
   text-decoration: none;
+  margin: 0;
+  padding: 0;
 }
+
 .navbar--items ul > li > a {
   text-decoration: none;
 }
+
 /* Navbar Content */
 .navbar--content {
   color: var(--darkblue);
@@ -132,10 +138,56 @@ h2 {
   line-height: 24px;
   cursor: pointer;
 }
+
 .navbar--active-content {
   color: var(--primary);
 }
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .navbar {
+    padding: 15px 30px; /* Reduce padding */
+  }
+
+  .navbar--items > ul {
+    gap: 25px; /* Reduce gap for smaller screens */
+  }
+
+  .navbar--content {
+    font-size: 14px; /* Slightly reduce font size */
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar--items {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: var(--white);
+    width: 100%;
+    padding: 10px 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .navbar--items.active {
+    display: block; /* Ensure it displays when active */
+  }
+
+  .navbar--items ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px; /* Further reduce gap for mobile */
+  }
+}
+
+@media (max-width: 500px) {
+  .navbar--content {
+    font-size: 12px; /* Further reduce font size */
+  }
+}
 /* Navbar Styler Ends */
+
 
 /* Hero Section Style */
 .hero--section {
@@ -451,6 +503,7 @@ h2 {
 
 /* Styles for the Career Section */
 /* Styles for the Career Section */
+
 /* Career Section Styles */
 .career-section-card {
   padding: 60px 20px;
@@ -463,8 +516,9 @@ h2 {
 
 .career-content-wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
@@ -478,6 +532,7 @@ h2 {
   color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
 }
 
 .career-left-heading {
@@ -501,6 +556,7 @@ h2 {
   margin-bottom: 15px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .career-benefits-list i {
@@ -508,15 +564,20 @@ h2 {
   color: #ffffff;
 }
 
+
 .career-right-side {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%; /* Ensure it takes the full height of the container */
 }
 
-.career-card {
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+.career-header {
+  width: 100%;
+  max-width: 600px; /* Optional: to limit the width of the text */
 }
 
 .career-heading-card {
@@ -526,116 +587,143 @@ h2 {
   font-weight: 700;
 }
 
-.career-subtitle-card {
+.career-subheader-card {
   font-size: 1.125rem;
   color: #64748b;
   margin-bottom: 30px;
-  font-weight: 400;
+}
+
+
+.career-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .career-form-card {
-  margin-top: 20px;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .career-form-group-card {
-  margin-bottom: 20px;
+  text-align: left;
 }
 
 .career-label-card {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #1e293b;
-}
-
-.career-select-card,
-.career-input-card {
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
   font-size: 1rem;
-  color: #334155;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  color: #1d4ed8;
+  font-weight: 500;
+  margin-bottom: 8px;
+  display: block;
 }
 
-.career-select-card:focus,
-.career-input-card:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 5px rgba(37, 99, 235, 0.2);
+.career-select-card {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
 }
 
 .career-job-description-card {
-  padding: 12px;
-  background-color: #f1f5f9;
+  padding: 10px;
+  background: #f1f5f9;
   border-radius: 8px;
-  border: 1px solid #cbd5e1;
-  font-size: 1rem;
   color: #334155;
-  min-height: 120px;
+  min-height: 60px;
+}
+
+.career-upload-wrapper {
+  position: relative;
   display: flex;
   align-items: center;
 }
 
-.career-submit-button-card {
+.career-input-card {
   width: 100%;
-  padding: 14px;
-  background-color: #2563eb;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
+
+.cancel-cv-button {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.career-submit-button-card {
+  padding: 12px 20px;
+  background: #1d4ed8;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
   border: none;
   border-radius: 8px;
-  color: #ffffff;
-  font-size: 1.125rem;
-  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
+  transition: background 0.3s;
 }
 
 .career-submit-button-card:hover {
-  background-color: #1e40af;
+  background: #1e40af;
 }
 
-@media (max-width: 768px) {
+.alert {
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.alert-error {
+  background: #f87171;
+  color: #ffffff;
+}
+
+.alert-success {
+  background: #34d399;
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
   .career-content-wrapper {
-    flex-direction: column;
-    gap: 0;
+    flex-direction: row;
+    gap: 40px;
   }
 
-  .career-left-side {
-    margin-bottom: 20px;
+  .career-left-side, .career-right-side {
+    max-width: 50%;
+  }
+
+  .career-card {
+    padding: 40px;
   }
 
   .career-heading-card {
-    font-size: 2rem;
+    font-size: 3rem;
   }
 
-  .career-subtitle-card {
-    font-size: 1rem;
-  }
-
-  .career-submit-button-card {
-    font-size: 1rem;
-    padding: 12px;
+  .career-subheader-card {
+    font-size: 1.25rem;
   }
 }
 
-@media (max-width: 480px) {
-  .career-heading-card {
-    font-size: 1.75rem;
+@media (min-width: 1024px) {
+  .career-left-side, .career-right-side {
+    max-width: 45%;
   }
 
-  .career-subtitle-card {
-    font-size: 0.875rem;
-  }
-  
-  .career-select-card,
-  .career-input-card,
-  .career-job-description-card {
-    font-size: 0.875rem;
+  .career-left-heading {
+    font-size: 2.5rem;
   }
 }
+
 
 /* Spinner CSS */
 .spinner {

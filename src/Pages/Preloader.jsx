@@ -1,6 +1,5 @@
 import React from 'react';
 import './Preloader.css'; // Add this CSS file for styling
-
 const Preloader = () => {
   return (
     <div className="preloader">

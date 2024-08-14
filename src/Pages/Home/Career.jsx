@@ -7,8 +7,8 @@ export default function Career() {
   const [jobRole, setJobRole] = useState('');
   const [jobDescription, setJobDescription] = useState('');
   const [cvFile, setCvFile] = useState(null);
-  const [isLoading, setIsLoading] = useState(false); // Loading state
-  const [alert, setAlert] = useState({ type: '', message: '' }); // Alert state
+  const [isLoading, setIsLoading] = useState(false);
+  const [alert, setAlert] = useState({ type: '', message: '' });
 
   const jobDescriptions = {
     'Business Development Manager': 'A business development manager works in strategic planning, sales management, and prospecting for new clients to help grow an organization.',
@@ -27,6 +27,10 @@ export default function Career() {
     if (file) {
       setCvFile(file);
     }
+  };
+
+  const cancelCvUpload = () => {
+    setCvFile(null);
   };
 
   const uploadCvFile = async (file) => {
@@ -50,8 +54,8 @@ export default function Career() {
       return;
     }
 
-    setIsLoading(true); // Set loading to true when submission starts
-    setAlert({ type: '', message: '' }); // Clear previous alerts
+    setIsLoading(true);
+    setAlert({ type: '', message: '' });
 
     try {
       const fileUrl = await uploadCvFile(cvFile);
@@ -74,12 +78,11 @@ export default function Career() {
       console.error("Failed to submit the application:", error);
       setAlert({ type: 'error', message: `Failed to submit the application: ${error.message}` });
     } finally {
-      setIsLoading(false); // Set loading to false when submission is complete
+      setIsLoading(false);
       setJobRole('');
       setJobDescription('');
       setCvFile(null);
 
-      // Hide alert after 5 seconds
       setTimeout(() => {
         setAlert({ type: '', message: '' });
       }, 5000);
@@ -102,6 +105,10 @@ export default function Career() {
           </ul>
         </div>
         <div className="career-right-side">
+          <div className="career-header">
+            <h1 className="career-heading-card">Career Opportunities</h1>
+            <p className="career-subheader-card">Sinox will sponsor for skilled worker visa for eligible applicants from overseas</p>
+          </div>
           <div className="career-card">
             <h1 className="career-heading-card">Join Our Team</h1>
             <p className="career-subtitle-card">
@@ -112,7 +119,7 @@ export default function Career() {
                 <label htmlFor="jobRole" className="career-label-card">Job Role</label>
                 <select
                   id="jobRole"
-                  name="jobRole" 
+                  name="jobRole"
                   value={jobRole}
                   onChange={handleJobRoleChange}
                   className="career-select-card"
@@ -131,16 +138,23 @@ export default function Career() {
               </div>
               <div className="career-form-group-card">
                 <label htmlFor="cvUpload" className="career-label-card">Upload CV</label>
-                <input
-                  type="file"
-                  id="cvUpload"
-                  name="cvFile"
-                  onChange={handleCvUpload}
-                  accept=".pdf,.doc,.docx"
-                  className="career-input-card"
-                  aria-label="Upload CV"
-                  required
-                />
+                <div className="career-upload-wrapper">
+                  <input
+                    type="file"
+                    id="cvUpload"
+                    name="cvFile"
+                    onChange={handleCvUpload}
+                    accept=".pdf,.doc,.docx"
+                    className="career-input-card"
+                    aria-label="Upload CV"
+                    required
+                  />
+                  {cvFile && (
+                    <button type="button" onClick={cancelCvUpload} className="cancel-cv-button" aria-label="Cancel CV upload">
+                      &times;
+                    </button>
+                  )}
+                </div>
               </div>
               <button type="submit" className="career-submit-button-card" disabled={isLoading}>
                 {isLoading ? 'Submitting...' : 'Submit Application'}
@@ -157,3 +171,4 @@ export default function Career() {
     </section>
   );
 }
+
